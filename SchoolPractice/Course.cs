@@ -14,5 +14,24 @@ namespace SchoolPractice
         //public Dictionary<string, Student> Student { get; set; }
 
         public List<Student> Students { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Course course &&
+                   Professor == course.Professor &&
+                   Location == course.Location &&
+                   Time == course.Time;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Professor, Location, Time);
+        }
+
+        public override string ToString()
+        {
+            return $"{Professor} teaches at {Time} at {Location}.";
+        }
+
     }
 }
